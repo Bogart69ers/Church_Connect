@@ -1,0 +1,30 @@
+﻿@using (Html.BeginForm())
+{
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    @Html.AntiForgeryToken()
+
+    <div class="form-horizontal">
+        <h4>Login</h4>
+        @Html.ValidationSummary(true, "", new { @class = " text-danger" })
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Username</p>
+                
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-10">
+                <p>Password</p>
+               
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+                <input type="submit" value="Login" class="btn btn-default" />
+            </div>
+        </div>
+    </div>
+}
+
