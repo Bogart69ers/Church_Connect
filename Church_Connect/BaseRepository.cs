@@ -22,9 +22,14 @@ namespace Church_Connect
         {
             return Table.Find(id);
         }
+
         public List<T> GetAll()
         {
             return Table.ToList();
+        }
+        public List<Role> GetAllRoles()
+        {
+            return Table.Cast<Role>().ToList();
         }
         public ErrorCode Create(T t)
         {

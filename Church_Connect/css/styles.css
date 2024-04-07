@@ -90,7 +90,14 @@
     scroll-behavior: smooth;
   }
 }
-
+login-box {
+    padding-top: 10rem;
+    padding-bottom: 10rem;
+    background-color: white;
+    box-shadow: inset 0 0 0 2000px rgba(0,0,0,0.4);
+    background-position: center center;
+    background-size:cover;
+}
 body {
   margin: 0;
   font-family: var(--bs-body-font-family);
@@ -1136,7 +1143,7 @@ progress {
   }
   .col-md-10 {
     flex: 0 0 auto;
-    width: 83.33333333%;
+
   }
   .col-md-11 {
     flex: 0 0 auto;
@@ -1990,10 +1997,24 @@ progress {
   font-size: 0.875em;
   color: #6c757d;
 }
+.form-control1{
+    color: #212529;
+    background-color: #fff;
+    width: 60%;
+    border-radius: 5px;
+    
+}
+.form-control2{
+    background-color: #fff;
+    color: #212529;
+    width: 100%;
+    border: 1px solid #ced4da;
 
+}
 .form-control {
-  display: block;
-  width: 100%;
+  display: inline-flex;
+  width: 50%;
+  align-items:center;
   padding: 0.375rem 0.75rem;
   font-size: 1rem;
   font-weight: 400;
@@ -2773,10 +2794,10 @@ textarea.form-control-lg {
   --bs-btn-font-size: 1rem;
   --bs-btn-font-weight: 400;
   --bs-btn-line-height: 1.5;
-  --bs-btn-color: #212529;
+  --bs-btn-color: white;
   --bs-btn-bg: transparent;
   --bs-btn-border-width: 1px;
-  --bs-btn-border-color: transparent;
+  --bs-btn-border-color: #ffffff;
   --bs-btn-border-radius: 0.375rem;
   --bs-btn-hover-border-color: transparent;
   --bs-btn-box-shadow: inset 0 1px 0 rgba(255, 255, 255, 0.15), 0 1px 1px rgba(0, 0, 0, 0.075);
@@ -7984,11 +8005,12 @@ textarea.form-control-lg {
 }
 
 .text-end {
-  text-align: right !important;
+  text-align: left !important;
 }
 
 .text-center {
   text-align: center !important;
+
 }
 
 .text-decoration-none {
@@ -8017,6 +8039,23 @@ textarea.form-control-lg {
 
 .text-wrap {
   white-space: normal !important;
+  margin-left: 35%;
+  margin-right: 35%;
+  padding: 40px;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.64);
+  text-align: center;
+  width: 30%;
+  border-radius: 10px;
+}
+.text-wrap2 {
+  white-space: normal !important;
+  margin-left: 30%;
+  margin-right: 30%;
+  padding: 40px;
+  box-shadow: inset 0 0 0 2000px rgba(0, 0, 0, 0.64);
+  text-align: center;
+  width: 40%;
+  border-radius: 10px;
 }
 
 .text-nowrap {
@@ -10885,3 +10924,4 @@ header.masthead .masthead-content .masthead-subheading {
     font-size: 4rem;
   }
 }
+

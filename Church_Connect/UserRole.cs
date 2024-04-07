@@ -12,15 +12,13 @@ namespace Church_Connect
     using System;
     using System.Collections.Generic;
     
-    public partial class Payment
+    public partial class UserRole
     {
-        public int PaymentID { get; set; }
-        public Nullable<int> BookingID { get; set; }
-        public string PaymentMethod { get; set; }
-        public Nullable<decimal> Amount { get; set; }
-        public Nullable<System.DateTime> PaymentDate { get; set; }
-        public string PaymentStatus { get; set; }
+        public int id { get; set; }
+        public Nullable<int> userId { get; set; }
+        public Nullable<int> roleId { get; set; }
     
-        public virtual Booking Booking { get; set; }
+        public virtual Role Role { get; set; }
+        public virtual User_Account User_Account { get; set; }
     }
 }

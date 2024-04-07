@@ -17,16 +17,31 @@
     <link rel="stylesheet" type="text/css" href="~/css/styles.css">
 </head>
 <body id="page-top">
-    <!-- Navigation-->
+    <!-- Navigation-->  
     <nav class="navbar navbar-expand-lg navbar-dark navbar-custom fixed-top">
         <div class="container px-5">
             @Html.ActionLink("Church Connect", "Index", "Home", new { area = " "}, new { @class = "navbar-brand" })
             <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarResponsive" aria-controls="navbarResponsive" aria-expanded="false" aria-label="Toggle navigation"><span class="navbar-toggler-icon"></span></button>
             <div class="collapse navbar-collapse" id="navbarResponsive">
                 <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="~/Home">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="#!">About Us</a></li>
-                    <li class="nav-item"><a class="nav-link" href="~/Home/Login">Log In</a></li>
+                    @if (User.Identity.IsAuthenticated)
+                    {
+                        if (User.IsInRole("Admin"))
+                        {
+                            <li class="nav-item"><a class="nav-link" href="~/Home">Home</a></li>
+                            <li class="nav-item"><a class="nav-link" href="#!">About Us</a></li>
+                            <li class="nav-item"><a class="nav-link" href="Home/Create">Create Account</a></li>
+                            <li class="nav-item"><a class="nav-link" href="~/Home">Dashboard</a></li>
+                        }
+                        <li class="nav-item"><a class="nav-link" href="#">@User.Identity.Name</a></li>                        
+                        <li class="nav-item"><a class="nav-link" href="Home/Logout">Logout</a></li>
+                    }
+                    else
+                    {
+                        <li class="nav-item"><a class="nav-link" href="~/Home">Home</a></li>
+                        <li class="nav-item"><a class="nav-link" href="#!">About Us</a></li>
+                        <li class="nav-item"><a class="nav-link" href="~/Home/Login">Log In</a></li>
+                    }
                 </ul>
             </div>
         </div>

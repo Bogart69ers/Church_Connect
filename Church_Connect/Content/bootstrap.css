@@ -1956,6 +1956,7 @@ textarea.input-lg {
   }
 }
 
+}
 .form-horizontal .control-label,
 .form-horizontal .radio,
 .form-horizontal .checkbox,
@@ -1969,6 +1970,7 @@ textarea.input-lg {
 .form-horizontal .form-group {
   margin-right: -15px;
   margin-left: -15px;
+
 }
 
 .form-horizontal .form-group:before,
@@ -1998,6 +2000,7 @@ textarea.input-lg {
 }
 
 .btn {
+    color:white;
   display: inline-block;
   padding: 6px 12px;
   margin-bottom: 0;

@@ -21,13 +21,15 @@ namespace Church_Connect
             this.Parishioner = new HashSet<Parishioner>();
             this.User_Account1 = new HashSet<User_Account>();
             this.User_Information = new HashSet<User_Information>();
+            this.UserRole = new HashSet<UserRole>();
         }
     
         public int UserID { get; set; }
         public string Username { get; set; }
         public string Password { get; set; }
-        public Nullable<int> Role { get; set; }
-        public Nullable<int> Status { get; set; }
+        public int RoleId { get; set; }
+        public string AccountStatus { get; set; }
+        public string SelectedRole { get; set; }
         public Nullable<int> CreatedBy { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
@@ -39,5 +41,7 @@ namespace Church_Connect
         public virtual User_Account User_Account2 { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<User_Information> User_Information { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }

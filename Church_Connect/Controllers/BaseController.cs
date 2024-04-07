@@ -10,11 +10,15 @@ namespace Church_Connect.Controllers
     {
         public ChurchEntities _Cdb;
         public BaseRepository<User_Account> _cuserRepo;
+        public BaseRepository<Role> _croleRepo;
+        public BaseRepository<UserRole> _curoleRepo;
 
         public BaseController()
         {
             _Cdb = new ChurchEntities();
             _cuserRepo = new BaseRepository<User_Account>();
+            _croleRepo = new BaseRepository<Role>();
+            _curoleRepo = new BaseRepository<UserRole>();
         }
     }
 }

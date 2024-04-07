@@ -4,24 +4,29 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="c189ea262b4a46259bd1bba1cba2bbfe" Name="Diagram1">
-        <EntityTypeShape EntityType="ChurchConnectModel.Booking" Width="1.5" PointX="3" PointY="2.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.Parishioner" Width="1.5" PointX="3" PointY="6.875" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.Payment" Width="1.5" PointX="5.25" PointY="3.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.Report" Width="1.5" PointX="3.75" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.Schedule" Width="1.5" PointX="0.75" PointY="1.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.ScheduleType" Width="1.5" PointX="1.5" PointY="14.25" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="6.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.User_Account" Width="1.5" PointX="0.75" PointY="4.75" IsExpanded="true" />
-        <EntityTypeShape EntityType="ChurchConnectModel.User_Information" Width="1.5" PointX="3" PointY="10.375" IsExpanded="true" />
-        <AssociationConnector Association="ChurchConnectModel.FK_Booking_Schedule" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_Payment_Booking" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_UserAccount_CreatedBy" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_Parishioner_User_Account" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_Report_ScheduleType" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_Schedule_ScheduleType" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_User_Account_User_Account" ManuallyRouted="false" />
-        <AssociationConnector Association="ChurchConnectModel.FK_User_Information_User_Account" ManuallyRouted="false" />
+      <Diagram DiagramId="c189ea262b4a46259bd1bba1cba2bbfe" Name="Diagram1" ZoomLevel="63">
+        <EntityTypeShape EntityType="ChurchConnectModel.Booking" Width="1.5" PointX="6" PointY="6.375" />
+        <EntityTypeShape EntityType="ChurchConnectModel.Parishioner" Width="1.5" PointX="3" PointY="14.625" />
+        <EntityTypeShape EntityType="ChurchConnectModel.Payment" Width="1.5" PointX="8.25" PointY="6.625" />
+        <EntityTypeShape EntityType="ChurchConnectModel.Report" Width="1.5" PointX="3.75" PointY="11.75" />
+        <EntityTypeShape EntityType="ChurchConnectModel.Role" Width="1.5" PointX="0.75" PointY="11" />
+        <EntityTypeShape EntityType="ChurchConnectModel.Schedule" Width="1.5" PointX="3.75" PointY="1.75" />
+        <EntityTypeShape EntityType="ChurchConnectModel.ScheduleType" Width="1.5" PointX="1.5" PointY="1.75" />
+        <EntityTypeShape EntityType="ChurchConnectModel.sysdiagrams" Width="1.5" PointX="5.75" PointY="0.75" />
+        <EntityTypeShape EntityType="ChurchConnectModel.User_Account" Width="1.5" PointX="0.75" PointY="6.25" />
+        <EntityTypeShape EntityType="ChurchConnectModel.User_Information" Width="1.5" PointX="3" PointY="4.625" />
+        <EntityTypeShape EntityType="ChurchConnectModel.UserRole" Width="1.5" PointX="3" PointY="8.75" />
+        <EntityTypeShape EntityType="ChurchConnectModel.vw_UserRole" Width="1.5" PointX="5.75" PointY="3.75" />
+        <AssociationConnector Association="ChurchConnectModel.FK_Booking_Schedule" />
+        <AssociationConnector Association="ChurchConnectModel.FK_Payment_Booking" />
+        <AssociationConnector Association="ChurchConnectModel.FK_UserAccount_CreatedBy" />
+        <AssociationConnector Association="ChurchConnectModel.FK_Parishioner_User_Account" />
+        <AssociationConnector Association="ChurchConnectModel.FK_Report_ScheduleType" />
+        <AssociationConnector Association="ChurchConnectModel.FK_UserRole_Role" />
+        <AssociationConnector Association="ChurchConnectModel.FK_Schedule_ScheduleType" />
+        <AssociationConnector Association="ChurchConnectModel.FK_User_Account_User_Account" />
+        <AssociationConnector Association="ChurchConnectModel.FK_User_Information_User_Account" />
+        <AssociationConnector Association="ChurchConnectModel.FK_UserRole_User_Account" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

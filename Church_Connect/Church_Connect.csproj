@@ -188,6 +188,7 @@
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
     <Compile Include="IBaseRepository.cs" />
+    <Compile Include="MyRole.cs" />
     <Compile Include="Parishioner.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
@@ -198,19 +199,34 @@
     <Compile Include="Report.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="Role.cs">
+      <DependentUpon>ChurchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Schedule.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ScheduleType.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="sp_helpdiagramdefinition_Result.cs">
+      <DependentUpon>ChurchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="sp_helpdiagrams_Result.cs">
+      <DependentUpon>ChurchModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="sysdiagrams.cs">
+      <DependentUpon>ChurchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="UserRole.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Account.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
     <Compile Include="User_Information.cs">
+      <DependentUpon>ChurchModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="vw_UserRole.cs">
       <DependentUpon>ChurchModel.tt</DependentUpon>
     </Compile>
   </ItemGroup>
@@ -240,6 +256,7 @@
     <Content Include="Views\Home\Index.cshtml" />
     <Content Include="Views\Shared\_LayoutPage1.cshtml" />
     <Content Include="Views\Home\Login.cshtml" />
+    <Content Include="Views\Home\Create.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

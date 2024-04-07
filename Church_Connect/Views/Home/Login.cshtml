@@ -1,30 +1,37 @@
-﻿@using (Html.BeginForm())
+﻿@model Church_Connect.User_Account
+@using (Html.BeginForm())
 {
-    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    <link href = "~/css/styles.css" rel = "stylesheet"/>
+       Layout = "~/Views/Shared/_LayoutPage1.cshtml";
     @Html.AntiForgeryToken()
-
-    <div class="form-horizontal">
-        <h4>Login</h4>
-        @Html.ValidationSummary(true, "", new { @class = " text-danger" })
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Username</p>
-                
+        <div class="text-wrap">
+        <div class="form_control2">
+            <h2>Login</h2>
+            <hr />
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Username</p>
+                    @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control1" } })
+                    @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
 
-        <div class="form-group">
-            <div class="col-md-10">
-                <p>Password</p>
-               
+            <div class="form-group">
+                <div class="col-md-10">
+                    <p>Password</p>
+                    @Html.PasswordFor(model => model.Password, new { @class = "form-control1" })
+                    @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Login" class="btn btn-default" />
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <br />
+                    <input type="submit" value="Login" class="btn btn-default" />
+                </div>
             </div>
         </div>
     </div>
 }
+
 

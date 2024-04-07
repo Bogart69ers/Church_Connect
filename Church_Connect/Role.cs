@@ -12,25 +12,18 @@ namespace Church_Connect
     using System;
     using System.Collections.Generic;
     
-    public partial class Booking
+    public partial class Role
     {
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public Booking()
+        public Role()
         {
-            this.Payment1 = new HashSet<Payment>();
+            this.UserRole = new HashSet<UserRole>();
         }
     
-        public int BookingID { get; set; }
-        public int ScheduleID { get; set; }
-        public Nullable<int> CreatedBy { get; set; }
-        public Nullable<int> ParishionerID { get; set; }
-        public Nullable<System.DateTime> ScheduleDate { get; set; }
-        public string Booking_Status { get; set; }
-        public Nullable<decimal> Payment { get; set; }
+        public int roleId { get; set; }
+        public string roleName { get; set; }
     
-        public virtual Schedule Schedule { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<Payment> Payment1 { get; set; }
-        public virtual User_Account User_Account { get; set; }
+        public virtual ICollection<UserRole> UserRole { get; set; }
     }
 }
