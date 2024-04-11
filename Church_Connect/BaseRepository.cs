@@ -31,6 +31,11 @@ namespace Church_Connect
         {
             return Table.Cast<Role>().ToList();
         }
+        public List<User_Account> GetAllAccounts()
+        {
+            return Table.Cast<User_Account>().ToList();
+        }
+
         public ErrorCode Create(T t)
         {
             try
@@ -78,7 +83,7 @@ namespace Church_Connect
 
                 return ErrorCode.Error;
             }
-        }
+        }        
 
     }
 }

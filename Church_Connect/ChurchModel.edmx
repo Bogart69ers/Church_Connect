@@ -92,6 +92,7 @@
           <Property Name="Password" Type="nvarchar" MaxLength="100" />
           <Property Name="AccountStatus" Type="nvarchar" MaxLength="100" />
           <Property Name="CreatedBy" Type="int" />
+          <Property Name="Role" Type="int" />
         </EntityType>
         <EntityType Name="User_Information">
           <Key>
@@ -196,6 +197,18 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_User_Account_User_Account1">
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="User_Account" Type="Self.User_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="User_Account">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_User_Information_User_Account">
           <End Role="User_Account" Type="Self.User_Account" Multiplicity="0..1" />
           <End Role="User_Information" Type="Self.User_Information" Multiplicity="*" />
@@ -221,7 +234,9 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRole_Role">
-          <End Role="Role" Type="Self.Role" Multiplicity="0..1" />
+          <End Role="Role" Type="Self.Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
@@ -233,7 +248,9 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRole_User_Account">
-          <End Role="User_Account" Type="Self.User_Account" Multiplicity="0..1" />
+          <End Role="User_Account" Type="Self.User_Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Role="UserRole" Type="Self.UserRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User_Account">
@@ -268,6 +285,11 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
         <Function Name="sp_helpdiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
           <Parameter Name="owner_id" Type="int" Mode="In" />
+        </Function>
+        <Function Name="sp_insertUserRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="int" Mode="In" />
         </Function>
         <Function Name="sp_renamediagram" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="diagramname" Type="nvarchar" Mode="In" />
@@ -317,6 +339,10 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <AssociationSet Name="FK_User_Account_User_Account" Association="Self.FK_User_Account_User_Account">
             <End Role="User_Account" EntitySet="User_Account" />
             <End Role="User_Account1" EntitySet="User_Account" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Account_User_Account1" Association="Self.FK_User_Account_User_Account1">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User_Account" EntitySet="User_Account" />
           </AssociationSet>
           <AssociationSet Name="FK_User_Information_User_Account" Association="Self.FK_User_Information_User_Account">
             <End Role="User_Account" EntitySet="User_Account" />
@@ -370,6 +396,11 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
             <Parameter Name="new_diagramname" Mode="In" Type="String" />
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
+          <FunctionImport Name="sp_insertUserRole">
+          <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Role" Mode="In" Type="Int32" />
+          </FunctionImport>
           <EntitySet Name="Booking" EntityType="ChurchConnectModel.Booking" />
           <EntitySet Name="Parishioner" EntityType="ChurchConnectModel.Parishioner" />
           <EntitySet Name="Payment" EntityType="ChurchConnectModel.Payment" />
@@ -401,6 +432,10 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <AssociationSet Name="FK_Report_ScheduleType" Association="ChurchConnectModel.FK_Report_ScheduleType">
             <End Role="ScheduleType" EntitySet="ScheduleType" />
             <End Role="Report" EntitySet="Report" />
+          </AssociationSet>
+          <AssociationSet Name="FK_User_Account_User_Account1" Association="ChurchConnectModel.FK_User_Account_User_Account1">
+            <End Role="Role" EntitySet="Role" />
+            <End Role="User_Account" EntitySet="User_Account" />
           </AssociationSet>
           <AssociationSet Name="FK_UserRole_Role" Association="ChurchConnectModel.FK_UserRole_Role">
             <End Role="Role" EntitySet="Role" />
@@ -491,6 +526,7 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </Key>
           <Property Name="roleId" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
           <Property Name="roleName" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="User_Account" Relationship="ChurchConnectModel.FK_User_Account_User_Account1" FromRole="Role" ToRole="User_Account" />
           <NavigationProperty Name="UserRole" Relationship="ChurchConnectModel.FK_UserRole_Role" FromRole="Role" ToRole="UserRole" />
         </EntityType>
         <EntityType Name="Schedule">
@@ -532,8 +568,10 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <Property Name="Password" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="AccountStatus" Type="String" MaxLength="100" FixedLength="false" Unicode="true" />
           <Property Name="CreatedBy" Type="Int32" />
+          <Property Name="Role" Type="Int32" />
           <NavigationProperty Name="Booking" Relationship="ChurchConnectModel.FK_UserAccount_CreatedBy" FromRole="User_Account" ToRole="Booking" />
           <NavigationProperty Name="Parishioner" Relationship="ChurchConnectModel.FK_Parishioner_User_Account" FromRole="User_Account" ToRole="Parishioner" />
+          <NavigationProperty Name="Role1" Relationship="ChurchConnectModel.FK_User_Account_User_Account1" FromRole="User_Account" ToRole="Role" />
           <NavigationProperty Name="User_Account1" Relationship="ChurchConnectModel.FK_User_Account_User_Account" FromRole="User_Account" ToRole="User_Account1" />
           <NavigationProperty Name="User_Account2" Relationship="ChurchConnectModel.FK_User_Account_User_Account" FromRole="User_Account1" ToRole="User_Account" />
           <NavigationProperty Name="User_Information" Relationship="ChurchConnectModel.FK_User_Information_User_Account" FromRole="User_Account" ToRole="User_Information" />
@@ -631,8 +669,22 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_UserRole_Role">
+        <Association Name="FK_User_Account_User_Account1">
           <End Type="ChurchConnectModel.Role" Role="Role" Multiplicity="0..1" />
+          <End Type="ChurchConnectModel.User_Account" Role="User_Account" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="Role">
+              <PropertyRef Name="roleId" />
+            </Principal>
+            <Dependent Role="User_Account">
+              <PropertyRef Name="Role" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_UserRole_Role">
+          <End Type="ChurchConnectModel.Role" Role="Role" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ChurchConnectModel.UserRole" Role="UserRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="Role">
@@ -680,7 +732,9 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </ReferentialConstraint>
         </Association>
         <Association Name="FK_UserRole_User_Account">
-          <End Type="ChurchConnectModel.User_Account" Role="User_Account" Multiplicity="0..1" />
+          <End Type="ChurchConnectModel.User_Account" Role="User_Account" Multiplicity="0..1">
+            <OnDelete Action="Cascade" />
+          </End>
           <End Type="ChurchConnectModel.UserRole" Role="UserRole" Multiplicity="*" />
           <ReferentialConstraint>
             <Principal Role="User_Account">
@@ -721,6 +775,7 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </FunctionImportMapping>
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ChurchConnectModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ChurchConnectModel.Store.sp_upgraddiagrams" />
+          <FunctionImportMapping FunctionImportName="sp_insertUserRole" FunctionName="ChurchConnectModel.Store.sp_insertUserRole" />
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="ChurchConnectModel.Booking">
               <MappingFragment StoreEntitySet="Booking">
@@ -810,6 +865,7 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <EntitySetMapping Name="User_Account">
             <EntityTypeMapping TypeName="ChurchConnectModel.User_Account">
               <MappingFragment StoreEntitySet="User_Account">
+                <ScalarProperty Name="Role" ColumnName="Role" />
                 <ScalarProperty Name="CreatedBy" ColumnName="CreatedBy" />
                 <ScalarProperty Name="AccountStatus" ColumnName="AccountStatus" />
                 <ScalarProperty Name="Password" ColumnName="Password" />

@@ -142,5 +142,22 @@ namespace Church_Connect
         {
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_upgraddiagrams");
         }
+    
+        public virtual int sp_insertUserRole(string username, string password, Nullable<int> role)
+        {
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var roleParameter = role.HasValue ?
+                new ObjectParameter("Role", role) :
+                new ObjectParameter("Role", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertUserRole", usernameParameter, passwordParameter, roleParameter);
+        }
     }
 }
