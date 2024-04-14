@@ -296,6 +296,13 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <Parameter Name="owner_id" Type="int" Mode="In" />
           <Parameter Name="new_diagramname" Type="nvarchar" Mode="In" />
         </Function>
+        <Function Name="sp_updateRole" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="UserId" Type="int" Mode="In" />
+          <Parameter Name="Username" Type="nvarchar" Mode="In" />
+          <Parameter Name="Password" Type="nvarchar" Mode="In" />
+          <Parameter Name="Role" Type="int" Mode="In" />
+          <Parameter Name="AccountStatus" Type="nvarchar" Mode="In" />
+        </Function>
         <Function Name="sp_upgraddiagrams" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo" />
         <EntityContainer Name="ChurchConnectModelStoreContainer">
           <EntitySet Name="Booking" EntityType="Self.Booking" Schema="dbo" store:Type="Tables" />
@@ -397,9 +404,16 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           </FunctionImport>
           <FunctionImport Name="sp_upgraddiagrams" />
           <FunctionImport Name="sp_insertUserRole">
-          <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Username" Mode="In" Type="String" />
             <Parameter Name="Password" Mode="In" Type="String" />
             <Parameter Name="Role" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="sp_updateRole">
+            <Parameter Name="UserId" Mode="In" Type="Int32" />
+            <Parameter Name="Username" Mode="In" Type="String" />
+            <Parameter Name="Password" Mode="In" Type="String" />
+            <Parameter Name="Role" Mode="In" Type="Int32" />
+            <Parameter Name="AccountStatus" Mode="In" Type="String" />
           </FunctionImport>
           <EntitySet Name="Booking" EntityType="ChurchConnectModel.Booking" />
           <EntitySet Name="Parishioner" EntityType="ChurchConnectModel.Parishioner" />
@@ -776,6 +790,7 @@ warning 6002: The table/view 'ChurchConnect.dbo.vw_UserRole' does not have a pri
           <FunctionImportMapping FunctionImportName="sp_renamediagram" FunctionName="ChurchConnectModel.Store.sp_renamediagram" />
           <FunctionImportMapping FunctionImportName="sp_upgraddiagrams" FunctionName="ChurchConnectModel.Store.sp_upgraddiagrams" />
           <FunctionImportMapping FunctionImportName="sp_insertUserRole" FunctionName="ChurchConnectModel.Store.sp_insertUserRole" />
+          <FunctionImportMapping FunctionImportName="sp_updateRole" FunctionName="ChurchConnectModel.Store.sp_updateRole" />
           <EntitySetMapping Name="Booking">
             <EntityTypeMapping TypeName="ChurchConnectModel.Booking">
               <MappingFragment StoreEntitySet="Booking">

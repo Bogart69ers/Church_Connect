@@ -12,6 +12,10 @@ namespace Church_Connect.Controllers
         public BaseRepository<User_Account> _cuserRepo;
         public BaseRepository<Role> _croleRepo;
         public BaseRepository<UserRole> _curoleRepo;
+        public BaseRepository<ScheduleType> _scheduleType;
+        public BaseRepository<Booking> _Booking;
+
+
 
         public BaseController()
         {
@@ -19,6 +23,8 @@ namespace Church_Connect.Controllers
             _cuserRepo = new BaseRepository<User_Account>();
             _croleRepo = new BaseRepository<Role>();
             _curoleRepo = new BaseRepository<UserRole>();
+            _scheduleType = new BaseRepository<ScheduleType>();
+            _Booking = new BaseRepository<Booking>();
         }
     }
 }

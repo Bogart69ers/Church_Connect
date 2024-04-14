@@ -31,6 +31,14 @@ namespace Church_Connect
         {
             return Table.Cast<Role>().ToList();
         }
+        public List<ScheduleType> GetAllSchedule()
+        {
+            return Table.Cast<ScheduleType>().ToList();
+        }
+        public List<Booking> GetAllBooking()
+        {
+            return Table.Cast<Booking>().ToList();
+        }
         public List<User_Account> GetAllAccounts()
         {
             return Table.Cast<User_Account>().ToList();

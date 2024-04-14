@@ -24,7 +24,7 @@ namespace Church_Connect.Controllers
             var roles = _croleRepo.GetAllRoles();
             ViewBag.Roles = new SelectList(roles, "RoleName", "RoleName");
 
-            var accounts = _cuserRepo.GetAllAccounts(); // Adjust this method according to your repository
+            var accounts = _cuserRepo.GetAllAccounts();
             ViewBag.Accounts = accounts;
             
             var model = new User_Account();
@@ -40,12 +40,10 @@ namespace Church_Connect.Controllers
                 {
                     using (var dbContext = new ChurchEntities())
                     {
-                        // Create SqlParameter instances for username, password, role, and createdBy
                         var usernameParameter = new SqlParameter("@Username", u.Username);
                         var passwordParameter = new SqlParameter("@Password", u.Password);
                         var roleParameter = new SqlParameter("@Role", u.Role);
 
-                        // Call the stored procedure using DbContext.Database.ExecuteSqlCommand
                         dbContext.Database.ExecuteSqlCommand("sp_insertUserRole @Username, @Password, @Role", usernameParameter, passwordParameter, roleParameter);
                     }
 
@@ -55,12 +53,10 @@ namespace Church_Connect.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Log the exception or handle it appropriately
                     ModelState.AddModelError("", $"Error: {ex.Message}");
                 }
             }
 
-            // If ModelState is not valid or an exception occurred, return to the view with errors
             return View(u);
         }
 
@@ -102,10 +98,8 @@ namespace Church_Connect.Controllers
             FormsAuthentication.SignOut();
             return RedirectToAction("Login");
         }
-
+  
         [Authorize(Roles = "Admin")]
-        [HttpGet]
-        [Authorize(Roles = "Manager")]
         public ActionResult Edit(int id)
         {
             return View(_cuserRepo.Get(id));
@@ -114,13 +108,36 @@ namespace Church_Connect.Controllers
         [HttpPost]
         public ActionResult Edit(User_Account u)
         {
-            _cuserRepo.Update(u.UserID, u);
-            TempData["Msg"] = $"User {u.Username} updated!";
+            if (ModelState.IsValid)
+            {
+                try
+                {
+                    using (var dbContext = new ChurchEntities())
+                    {
+                        var userID = new SqlParameter("@userID", u.UserID);
+                        var username = new SqlParameter("@Username", u.Username);
+                        var password = new SqlParameter("@Password", u.Password);
+                        var role = new SqlParameter("@Role", u.Role);
+                        var accountStatus = new SqlParameter("@AccountStatus", u.AccountStatus);
 
-            return RedirectToAction("Edit");
+                        dbContext.Database.ExecuteSqlCommand("sp_updateRole @userID, @Username, @Password, @Role, @AccountStatus", userID, username, password, role, accountStatus);
+                    }
+                    TempData["Msg"] = $"User {u.Username} updated!";
+
+                    return RedirectToAction("Create");
+                }
+                catch (Exception ex)
+                {
+                    ModelState.AddModelError("", $"Error: {ex.Message}");
+                }
+            }
+
+            return View(u);
         }
 
+
         // POST: Home/Delete/{id}
+        [Authorize(Roles = "Admin")]
         [HttpPost]
         [ValidateAntiForgeryToken]
         public ActionResult Delete(int id)
@@ -137,5 +154,31 @@ namespace Church_Connect.Controllers
                 return RedirectToAction("Create"); // Redirect to the index page
             }
         }
+        [Authorize(Roles = "User")]
+        public ActionResult Dashboard()
+        {
+            var schedule = _scheduleType.GetAllSchedule();
+            ViewBag.Roles = new SelectList(schedule, "ScheduleName", "ScheduleName");
+
+            var Booking = _Booking.GetAllBooking();
+            ViewBag.Accounts = Booking;
+
+            var model = new Parishioner();
+            return View(model);
+        }
+
+        [Authorize(Roles = "Admin")]
+        public ActionResult adminDashboard()
+        {
+            return View();
+        }
+
+        [Authorize(Roles = "User, Admin")]
+        public ActionResult Profile()
+        {
+            return View();
+        }
+
+
     }
 }

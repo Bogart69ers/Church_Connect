@@ -1,8 +1,10 @@
 ﻿@model Church_Connect.User_Account
 @using (Html.BeginForm())
 {
-    <link href = "~/css/styles.css" rel = "stylesheet"/>
-       Layout = "~/Views/Shared/_LayoutPage1.cshtml";
+    <link href="~/css/styles.css" rel="stylesheet" />
+    <link rel="icon" type="image/x-icon" href="assets/logo.ico" />
+    <link rel="stylesheet" type="text/css" href="~/css/styles.css">
+    Layout = "~/Views/Shared/_LayoutPage1.cshtml";
     @Html.AntiForgeryToken()
         <div class="text-wrap">
         <div class="form_control2">

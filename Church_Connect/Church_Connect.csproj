@@ -132,6 +132,10 @@
     <Content Include="assets\img\02.jpg" />
     <Content Include="assets\img\03.jpg" />
     <Content Include="assets\img\1.jpg" />
+    <Content Include="assets\img\Chan.png" />
+    <Content Include="assets\img\Jino.png" />
+    <Content Include="assets\img\Josep.png" />
+    <Content Include="assets\img\Marvin.jpg" />
     <Content Include="assets\Logo.ico" />
     <Content Include="ChurchModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -145,6 +149,7 @@
     </Content>
     <Content Include="Content\bootstrap.css" />
     <Content Include="Content\bootstrap.min.css" />
+    <Content Include="css\font-awesome.css" />
     <Content Include="Content\Site.css" />
     <Content Include="css\styles.css" />
     <Content Include="Fonts\fontawesome-webfont.svg" />
@@ -258,6 +263,9 @@
     <Content Include="Views\Home\Login.cshtml" />
     <Content Include="Views\Home\Create.cshtml" />
     <Content Include="Views\Home\Edit.cshtml" />
+    <Content Include="Views\Home\Dashboard.cshtml" />
+    <Content Include="Views\Home\adminDashboard.cshtml" />
+    <Content Include="Views\Home\Profile.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

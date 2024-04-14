@@ -159,5 +159,30 @@ namespace Church_Connect
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_insertUserRole", usernameParameter, passwordParameter, roleParameter);
         }
+    
+        public virtual int sp_updateRole(Nullable<int> userId, string username, string password, Nullable<int> role, string accountStatus)
+        {
+            var userIdParameter = userId.HasValue ?
+                new ObjectParameter("UserId", userId) :
+                new ObjectParameter("UserId", typeof(int));
+    
+            var usernameParameter = username != null ?
+                new ObjectParameter("Username", username) :
+                new ObjectParameter("Username", typeof(string));
+    
+            var passwordParameter = password != null ?
+                new ObjectParameter("Password", password) :
+                new ObjectParameter("Password", typeof(string));
+    
+            var roleParameter = role.HasValue ?
+                new ObjectParameter("Role", role) :
+                new ObjectParameter("Role", typeof(int));
+    
+            var accountStatusParameter = accountStatus != null ?
+                new ObjectParameter("AccountStatus", accountStatus) :
+                new ObjectParameter("AccountStatus", typeof(string));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction("sp_updateRole", userIdParameter, usernameParameter, passwordParameter, roleParameter, accountStatusParameter);
+        }
     }
 }
